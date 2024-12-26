@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Reference - Web Developer's Color Tool</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1>Color Reference</h1>
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+            </div>
+        </header>
+
+        <nav class="search-bar">
+            <div class="search-container">
+                <input type="text" id="colorSearch" placeholder="Search colors by name, HEX, or RGB...">
+                <div class="filter-buttons">
+                    <button data-filter="hue">Hue</button>
+                    <button data-filter="saturation">Saturation</button>
+                    <button data-filter="brightness">Brightness</button>
+                    <button data-filter="contrast">Contrast</button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="color-tools-container">
+                <div class="color-picker-section">
+                    <h2>Color Picker</h2>
+                    <div class="color-picker-container">
+                        <div class="color-preview" id="colorPreview"></div>
+                        <div class="color-inputs">
+                            <div class="color-sliders">
+                                <label>
+                                    R: <input type="range" id="redSlider" min="0" max="255" value="0">
+                                    <span id="redValue">0</span>
+                                </label>
+                                <label>
+                                    G: <input type="range" id="greenSlider" min="0" max="255" value="0">
+                                    <span id="greenValue">0</span>
+                                </label>
+                                <label>
+                                    B: <input type="range" id="blueSlider" min="0" max="255" value="0">
+                                    <span id="blueValue">0</span>
+                                </label>
+                            </div>
+                            <div class="color-values">
+                                <input type="text" id="hexInput" placeholder="#000000">
+                                <input type="text" id="rgbInput" placeholder="rgb(0,0,0)">
+                                <input type="text" id="hslInput" placeholder="hsl(0,0%,0%)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-grid" id="colorGrid">
+                </div>
+            </div>
+
+            <aside class="color-details" id="colorDetails">
+                <div class="details-content">
+                    <h3>Selected Color</h3>
+                    <div class="selected-color-preview"></div>
+                    <div class="color-codes">
+                        <div class="code-group">
+                            <label>HEX</label>
+                            <input type="text" readonly>
+                            <button class="copy-btn" data-clipboard="hex">Copy</button>
+                        </div>
+                        <div class="code-group">
+                            <label>RGB</label>
+                            <input type="text" readonly>
+                            <button class="copy-btn" data-clipboard="rgb">Copy</button>
+                        </div>
+                        <div class="code-group">
+                            <label>HSL</label>
+                            <input type="text" readonly>
+                            <button class="copy-btn" data-clipboard="hsl">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="utils/colorUtils.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scripts = [
+                'components/colorGrid.js',
+                'components/colorPicker.js'
+            ];
+            
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                document.body.appendChild(script);
+            });
+        });
+    </script>
+</body>
+</html>
